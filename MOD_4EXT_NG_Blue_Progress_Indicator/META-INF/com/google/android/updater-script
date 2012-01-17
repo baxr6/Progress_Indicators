@@ -1,0 +1,29 @@
+ui_print("Updating Progress Bar");
+	run_program("/sbin/mount", "/system");
+	run_program("/sbin/mount", "/data");
+
+ui_print("");
+ui_print("");
+ui_print("Installing New Progress Bar");
+	package_extract_dir("system", "/system");
+	
+ui_print("");
+ui_print("");
+
+ui_print   ("===============================================");
+ui_print   ("|                                             |");
+ui_print   ("|          Your theme's progress bar          |");
+ui_print   ("|          was updated successfully!          |");
+ui_print   ("|      *** RECOVERY NEEDS TO REBOOT ***       |");
+ui_print   ("|                                             |");
+ui_print   ("===============================================");
+run_program("/sbin/umount", "/system");
+run_program("/sbin/umount", "/data");
+ui_print("********************");
+ui_print("Reboot Recovery Now?");
+ui_print("********************");
+ui_print("4ext: show_yesno");
+run_program("/sbin/sleep", "2");
+if getprop("ext.confirm") == "yes" then
+run_program("/sbin/reboot" ,"recovery");
+endif;
